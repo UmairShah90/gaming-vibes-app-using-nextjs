@@ -10,6 +10,7 @@ import netlifyIdentity from 'netlify-identity-widget';
 
  export const AuthContextProvider = ({children}) => {
      const [user, setUser] = useState(null);
+     const [authReady,setAuthReady] = useState(false);
 
 
      useEffect(() => {
@@ -22,6 +23,11 @@ import netlifyIdentity from 'netlify-identity-widget';
        netlifyIdentity.on('logout',() => {
            setUser(null)
            console.log('logout event');
+       })
+
+       netlifyIdentity.on('init',(user) => {
+        setUser(null);
+        setAuthReady(true)
        })
 
       // init netlify identity connection
@@ -39,7 +45,7 @@ import netlifyIdentity from 'netlify-identity-widget';
      const logout = () => {
         netlifyIdentity.logout(); //netlify builtin dialog open for login Form
     }
-     const context = {user,login,logout}
+     const context = {user,login,logout,authReady}
 
      return (
          <AuthContext.Provider value={context}>
