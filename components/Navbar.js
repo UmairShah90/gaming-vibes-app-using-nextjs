@@ -36,6 +36,7 @@ export default function Navbar() {
             )}
           </ul>
         )}
+
       </nav>
       <div className="banner">
         <Image src="/banner.png" width={966} height={276} />

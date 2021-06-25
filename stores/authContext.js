@@ -28,6 +28,7 @@ import netlifyIdentity from 'netlify-identity-widget';
        netlifyIdentity.on('init',(user) => {
         setUser(null);
         setAuthReady(true)
+        console.log('init event')
        })
 
       // init netlify identity connection
